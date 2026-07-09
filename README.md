@@ -101,6 +101,23 @@ Rigenerazione:
 wp i18n make-pot . languages/ms-wc-recesso.pot --domain=ms-wc-recesso --exclude=vendor,node_modules,assets
 ```
 
+## CI e rilascio
+
+GitHub Actions:
+
+- **Lint** (`.github/workflows/lint.yml`): a ogni push su `main` e a ogni pull request esegue `php -l` e phpcs (WordPress Coding Standards).
+- **Release** (`.github/workflows/release.yml`): al push di un tag `v*` verifica che il tag coincida con l'header `Version:`, genera lo zip con `bin/build.php` e pubblica una GitHub Release con l'asset allegato.
+
+Per rilasciare una nuova versione:
+
+```bash
+# 1. aggiorna Version: in ms-wc-recesso.php e Stable tag in readme.txt
+# 2. (se cambiano le stringhe) rigenera .pot/.po/.mo
+git commit -am "Release x.y.z"
+git tag vx.y.z
+git push origin main --tags
+```
+
 ## Uninstall
 
 Per impostazione predefinita i dati vengono **conservati** (documenti probatori). La rimozione completa avviene solo se l'opzione `retain_data_on_uninstall` è disattivata.

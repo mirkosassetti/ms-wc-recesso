@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build and publish ZIP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: zip
+          coding_standards: none
+          tools: composer
+
+      - name: Check tag matches plugin version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          VER="$(grep -iE '^\s*\*\s*Version:' ms-wc-recesso.php | head -1 | sed -E 's/.*Version:\s*//' | tr -d '[:space:]')"
+          echo "Tag: $TAG — Plugin header: $VER"
+          if [ "$TAG" != "$VER" ]; then
+            echo "::error::Tag ($TAG) does not match the plugin header Version ($VER)."
+            exit 1
+          fi
+
+      - name: Build ZIP
+        run: php bin/build.php
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${GITHUB_REF_NAME}" dist/*.zip --title "${GITHUB_REF_NAME}" --generate-notes
