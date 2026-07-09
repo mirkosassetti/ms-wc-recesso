@@ -1,0 +1,238 @@
+/* MS Recesso 54-bis — minimal, theme-overridable front-end styles. */
+
+.ms-recesso {
+	max-width: 640px;
+	margin: 1.5em 0;
+}
+
+.ms-recesso__title {
+	margin-bottom: 0.5em;
+}
+
+.ms-recesso__intro {
+	margin-bottom: 1.5em;
+}
+
+.ms-recesso__field {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1.25em;
+}
+
+.ms-recesso__label {
+	font-weight: 600;
+	margin-bottom: 0.35em;
+}
+
+.ms-recesso__field input[type="text"],
+.ms-recesso__field input[type="email"],
+.ms-recesso__field textarea {
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	padding: 0.6em 0.75em;
+}
+
+.ms-recesso__help {
+	margin-top: 0.35em;
+	opacity: 0.8;
+}
+
+.ms-recesso__items {
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	padding: 1em;
+	margin: 0 0 1.5em;
+}
+
+.ms-recesso__item {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5em;
+	padding: 0.4em 0;
+	cursor: pointer;
+}
+
+.ms-recesso__item--excluded {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.ms-recesso__item-qty {
+	opacity: 0.7;
+	font-size: 0.9em;
+}
+
+.ms-recesso__item-reason {
+	font-size: 0.85em;
+	font-style: italic;
+	margin-left: auto;
+}
+
+.ms-recesso__actions {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	flex-wrap: wrap;
+}
+
+.ms-recesso__recap {
+	display: grid;
+	grid-template-columns: minmax(140px, auto) 1fr;
+	gap: 0.5em 1em;
+	margin: 1.5em 0;
+}
+
+.ms-recesso__recap dt {
+	font-weight: 600;
+}
+
+.ms-recesso__recap dd {
+	margin: 0;
+}
+
+.ms-recesso__recap-items {
+	margin: 0;
+	padding-left: 1.2em;
+}
+
+.ms-recesso__timestamp {
+	font-weight: 600;
+}
+
+.ms-recesso-notice {
+	padding: 0.9em 1.1em;
+	border-radius: 4px;
+	margin: 0 0 1.5em;
+	border: 1px solid transparent;
+}
+
+.ms-recesso-notice ul {
+	margin: 0;
+	padding-left: 1.2em;
+}
+
+.ms-recesso-notice--error {
+	background: #fdecea;
+	border-color: #f5c6cb;
+	color: #7a1c1c;
+}
+
+.ms-recesso-notice--warning {
+	background: #fff8e1;
+	border-color: #ffe082;
+	color: #6d5200;
+}
+
+.ms-recesso-notice--success {
+	background: #e8f5e9;
+	border-color: #a5d6a7;
+	color: #1b5e20;
+}
+
+.ms-recesso-notice--info {
+	background: #e3f2fd;
+	border-color: #90caf9;
+	color: #0d47a1;
+}
+
+.ms-recesso__orders {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ms-recesso__order {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1em;
+	flex-wrap: wrap;
+	padding: 0.9em 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ms-recesso__order-info {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	align-items: baseline;
+}
+
+/* Neutral button, consistent with the footer link. */
+.ms-recesso__order-action {
+	display: inline-block;
+	flex: none;
+	padding: 0.55em 1.2em;
+	border: 1px solid rgba(120, 120, 120, 0.5);
+	border-radius: 8px;
+	background: rgba(127, 127, 127, 0.08);
+	color: inherit;
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.ms-recesso__order-action:hover,
+.ms-recesso__order-action:focus {
+	background: rgba(127, 127, 127, 0.16);
+	border-color: rgba(120, 120, 120, 0.85);
+}
+
+.ms-recesso__order-action:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+.ms-recesso__submit--confirm {
+	font-weight: 700;
+}
+
+/* Site-wide footer link, rendered as a neutral, theme-agnostic button. */
+.ms-recesso-footer-link {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+	margin: 1.25em auto;
+	padding: 0.5em 1em;
+	clear: both;
+}
+
+.ms-recesso-footer-link a {
+	display: inline-block;
+	padding: 0.65em 1.5em;
+	border: 1px solid rgba(120, 120, 120, 0.5);
+	border-radius: 8px;
+	background: rgba(127, 127, 127, 0.08);
+	color: inherit;
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none;
+	transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ms-recesso-footer-link a:hover,
+.ms-recesso-footer-link a:focus {
+	background: rgba(127, 127, 127, 0.16);
+	border-color: rgba(120, 120, 120, 0.85);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.ms-recesso-footer-link a:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+	.ms-recesso__recap {
+		grid-template-columns: 1fr;
+		gap: 0.15em;
+	}
+
+	.ms-recesso__recap dt {
+		margin-top: 0.6em;
+	}
+}

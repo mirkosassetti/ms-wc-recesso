@@ -1,0 +1,10 @@
+# Normalize line endings: store and check out text files as LF everywhere.
+* text=auto eol=lf
+
+# Binary files must never be line-ending converted.
+*.mo binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.zip binary

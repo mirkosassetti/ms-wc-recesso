@@ -1,0 +1,782 @@
+# Copyright (C) 2026 Mirko Sassetti
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: MS Recesso 54-bis per WooCommerce 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ms-wc-recesso\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-09T10:49:10+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: ms-wc-recesso\n"
+
+#. Plugin Name of the plugin
+#: ms-wc-recesso.php
+msgid "MS Recesso 54-bis per WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: ms-wc-recesso.php
+msgid "https://github.com/mirkosassetti/ms-wc-recesso"
+msgstr ""
+
+#. Description of the plugin
+#: ms-wc-recesso.php
+msgid "Implementa la funzione di recesso obbligatoria ex art. 54-bis del Codice del Consumo (D.Lgs. 209/2025, Direttiva UE 2023/2673) per e-commerce B2C."
+msgstr ""
+
+#. Author of the plugin
+#: ms-wc-recesso.php
+msgid "Mirko Sassetti"
+msgstr ""
+
+#: src/Activator.php:78
+#: src/Frontend/MyAccountEndpoint.php:76
+#: templates/guest-lookup.php:26
+#: templates/order-select.php:19
+msgid "Recesso dal contratto"
+msgstr ""
+
+#: src/Admin/AdminPages.php:70
+#: src/Admin/OrderMetabox.php:55
+msgid "Recesso 54-bis"
+msgstr ""
+
+#: src/Admin/AdminPages.php:71
+#: src/Frontend/MyAccountEndpoint.php:58
+#: src/Frontend/MyAccountEndpoint.php:64
+msgid "Recesso"
+msgstr ""
+
+#: src/Admin/AdminPages.php:81
+#: src/Admin/AdminPages.php:125
+msgid "Richieste di recesso"
+msgstr ""
+
+#: src/Admin/AdminPages.php:82
+msgid "Richieste"
+msgstr ""
+
+#: src/Admin/AdminPages.php:90
+msgid "Impostazioni recesso"
+msgstr ""
+
+#: src/Admin/AdminPages.php:91
+msgid "Impostazioni"
+msgstr ""
+
+#: src/Admin/AdminPages.php:131
+msgid "Cerca"
+msgstr ""
+
+#: src/Admin/AdminPages.php:148
+msgid "Richiesta non trovata."
+msgstr ""
+
+#: src/Admin/AdminPages.php:163
+msgid "Permesso negato."
+msgstr ""
+
+#: src/Admin/OrderMetabox.php:78
+msgid "Nessuna richiesta di recesso per questo ordine."
+msgstr ""
+
+#: src/Admin/OrderMetabox.php:96
+msgid "(da verificare)"
+msgstr ""
+
+#: src/Admin/ProductFields.php:37
+msgid "Escluso dal recesso (art. 59)"
+msgstr ""
+
+#: src/Admin/ProductFields.php:38
+msgid "Se attivo, questo prodotto non sarà selezionabile nel flusso di recesso."
+msgstr ""
+
+#: src/Admin/ProductFields.php:45
+msgid "Motivo esclusione"
+msgstr ""
+
+#: src/Admin/ProductFields.php:47
+msgid "Mostrato al cliente accanto all’articolo escluso (facoltativo)."
+msgstr ""
+
+#: src/Admin/RequestsListTable.php:61
+msgid "Richiesta"
+msgstr ""
+
+#: src/Admin/RequestsListTable.php:62
+#: templates/admin/request-detail.php:47
+msgid "Cliente"
+msgstr ""
+
+#: src/Admin/RequestsListTable.php:63
+#: templates/admin/request-detail.php:46
+msgid "Stato"
+msgstr ""
+
+#: src/Admin/RequestsListTable.php:64
+msgid "Verifica"
+msgstr ""
+
+#: src/Admin/RequestsListTable.php:65
+#: templates/admin/request-detail.php:50
+#: templates/confirmation.php:41
+#: templates/form-declaration.php:58
+#: templates/form-summary.php:42
+#: templates/guest-declaration.php:66
+msgid "Ordine"
+msgstr ""
+
+#: src/Admin/RequestsListTable.php:66
+msgid "Creata"
+msgstr ""
+
+#: src/Admin/RequestsListTable.php:103
+msgid "Tutte"
+msgstr ""
+
+#: src/Admin/RequestsListTable.php:199
+msgid "Da verificare"
+msgstr ""
+
+#: src/Admin/RequestsListTable.php:228
+msgid "Nessuna richiesta di recesso."
+msgstr ""
+
+#: src/Domain/ExclusionRules.php:119
+msgid "Articolo escluso dal diritto di recesso ai sensi dell’art. 59 del Codice del Consumo."
+msgstr ""
+
+#. translators: 1: request UUID, 2: confirmation date/time.
+#: src/Domain/WithdrawalService.php:349
+#, php-format
+msgid "Recesso ex art. 54-bis trasmesso (rif. %1$s) in data %2$s."
+msgstr ""
+
+#: src/Emails/AdminNotificationEmail.php:27
+msgid "Recesso — notifica amministratore"
+msgstr ""
+
+#: src/Emails/AdminNotificationEmail.php:28
+msgid "Inviata all’amministratore quando un recesso viene trasmesso."
+msgstr ""
+
+#: src/Emails/AdminNotificationEmail.php:45
+msgid "[{site_title}] Nuova richiesta di recesso — ordine {order_reference}"
+msgstr ""
+
+#: src/Emails/AdminNotificationEmail.php:52
+msgid "Nuova richiesta di recesso"
+msgstr ""
+
+#: src/Emails/GuestVerificationEmail.php:35
+msgid "Recesso — verifica email (ospite)"
+msgstr ""
+
+#: src/Emails/GuestVerificationEmail.php:36
+msgid "Inviata all’ospite per confermare l’email e accedere alla dichiarazione di recesso."
+msgstr ""
+
+#: src/Emails/GuestVerificationEmail.php:51
+msgid "Conferma la tua richiesta di recesso"
+msgstr ""
+
+#: src/Emails/GuestVerificationEmail.php:58
+msgid "Richiesta di recesso"
+msgstr ""
+
+#: src/Emails/WithdrawalReceiptEmail.php:32
+msgid "Recesso — ricevuta al consumatore"
+msgstr ""
+
+#: src/Emails/WithdrawalReceiptEmail.php:33
+msgid "Ricevuta di avvenuto recesso inviata al consumatore, con contenuto della dichiarazione e data/ora."
+msgstr ""
+
+#: src/Emails/WithdrawalReceiptEmail.php:48
+msgid "Ricevuta di recesso — ordine {order_reference}"
+msgstr ""
+
+#: src/Emails/WithdrawalReceiptEmail.php:55
+#: src/Model/RequestStatus.php:40
+#: templates/confirmation.php:19
+msgid "Recesso trasmesso"
+msgstr ""
+
+#: src/Frontend/FlowController.php:118
+#: src/Frontend/FlowController.php:149
+msgid "Ordine non trovato o non associato al tuo account."
+msgstr ""
+
+#: src/Frontend/FlowController.php:123
+#: src/Frontend/FlowController.php:154
+msgid "Questo ordine non è idoneo al recesso."
+msgstr ""
+
+#: src/Frontend/FlowController.php:141
+#: src/Frontend/FlowController.php:224
+#: src/Frontend/FlowController.php:396
+#: src/Frontend/FlowController.php:469
+#: src/Frontend/FlowController.php:555
+msgid "Sessione scaduta, riprova."
+msgstr ""
+
+#: src/Frontend/FlowController.php:167
+#: src/Frontend/FlowController.php:503
+msgid "Inserisci il tuo nome."
+msgstr ""
+
+#: src/Frontend/FlowController.php:170
+msgid "Inserisci un indirizzo email valido per ricevere la conferma."
+msgstr ""
+
+#: src/Frontend/FlowController.php:173
+#: src/Frontend/FlowController.php:506
+msgid "Seleziona almeno un articolo idoneo al recesso."
+msgstr ""
+
+#: src/Frontend/FlowController.php:231
+msgid "Richiesta di recesso non trovata."
+msgstr ""
+
+#: src/Frontend/FlowController.php:372
+#: src/Frontend/FlowController.php:476
+#: src/Frontend/FlowController.php:562
+msgid "Il link di verifica non è valido o è scaduto."
+msgstr ""
+
+#: src/Frontend/FlowController.php:400
+msgid "Troppi tentativi. Riprova tra qualche minuto."
+msgstr ""
+
+#: src/Frontend/FlowController.php:408
+msgid "Inserisci il numero dell’ordine."
+msgstr ""
+
+#: src/Frontend/FlowController.php:411
+msgid "Inserisci un indirizzo email valido."
+msgstr ""
+
+#: src/Frontend/FlowController.php:535
+msgid "Non siamo riusciti ad abbinare automaticamente l’ordine indicato: la richiesta sarà comunque registrata e verificata manualmente."
+msgstr ""
+
+#: src/Frontend/FlowController.php:570
+msgid "Questa richiesta non può essere confermata."
+msgstr ""
+
+#: src/Frontend/FlowController.php:756
+msgid "Torna indietro"
+msgstr ""
+
+#: src/Frontend/PlacementService.php:152
+msgid "Recedere dal contratto qui"
+msgstr ""
+
+#: src/Model/RequestStatus.php:38
+msgid "In attesa di verifica"
+msgstr ""
+
+#: src/Model/RequestStatus.php:39
+msgid "Bozza"
+msgstr ""
+
+#: src/Model/RequestStatus.php:41
+msgid "In lavorazione"
+msgstr ""
+
+#: src/Model/RequestStatus.php:42
+msgid "Approvato"
+msgstr ""
+
+#: src/Model/RequestStatus.php:43
+msgid "Respinto (fuori ambito)"
+msgstr ""
+
+#: src/Model/RequestStatus.php:44
+msgid "Completato"
+msgstr ""
+
+#: src/Model/WithdrawalRequest.php:76
+msgid "Prodotto di esempio"
+msgstr ""
+
+#: src/Model/WithdrawalRequest.php:81
+msgid "Esempio di motivo del reso"
+msgstr ""
+
+#: src/Plugin.php:151
+msgid "MS Recesso 54-bis richiede WooCommerce attivo per funzionare."
+msgstr ""
+
+#: templates/admin/request-detail.php:32
+msgid "Dettaglio richiesta di recesso"
+msgstr ""
+
+#: templates/admin/request-detail.php:33
+msgid "Torna all’elenco"
+msgstr ""
+
+#: templates/admin/request-detail.php:37
+msgid "Stato aggiornato."
+msgstr ""
+
+#: templates/admin/request-detail.php:42
+#: templates/admin/settings.php:108
+msgid "Dati"
+msgstr ""
+
+#: templates/admin/request-detail.php:45
+msgid "Riferimento"
+msgstr ""
+
+#: templates/admin/request-detail.php:48
+msgid "Email"
+msgstr ""
+
+#: templates/admin/request-detail.php:54
+msgid "apri ordine"
+msgstr ""
+
+#: templates/admin/request-detail.php:58
+msgid "Verifica manuale"
+msgstr ""
+
+#: templates/admin/request-detail.php:58
+msgid "Sì"
+msgstr ""
+
+#: templates/admin/request-detail.php:58
+msgid "No"
+msgstr ""
+
+#: templates/admin/request-detail.php:59
+msgid "Trasmesso il"
+msgstr ""
+
+#: templates/admin/request-detail.php:60
+msgid "Motivo"
+msgstr ""
+
+#: templates/admin/request-detail.php:65
+#: templates/confirmation.php:44
+#: templates/form-summary.php:48
+msgid "Articoli"
+msgstr ""
+
+#: templates/admin/request-detail.php:74
+msgid "Ricevuta inviata"
+msgstr ""
+
+#: templates/admin/request-detail.php:80
+msgid "Gestione"
+msgstr ""
+
+#: templates/admin/request-detail.php:87
+msgid "Nuovo stato:"
+msgstr ""
+
+#: templates/admin/request-detail.php:94
+msgid "Aggiorna stato"
+msgstr ""
+
+#: templates/admin/request-detail.php:97
+msgid "Nessuna transizione disponibile da questo stato."
+msgstr ""
+
+#: templates/admin/request-detail.php:100
+msgid "Cronologia"
+msgstr ""
+
+#: templates/admin/settings.php:17
+msgid "Impostazioni recesso 54-bis"
+msgstr ""
+
+#: templates/admin/settings.php:22
+msgid "Pulsante e posizionamenti"
+msgstr ""
+
+#: templates/admin/settings.php:25
+msgid "Testo del pulsante"
+msgstr ""
+
+#: templates/admin/settings.php:29
+msgid "Testo del pulsante di conferma"
+msgstr ""
+
+#: templates/admin/settings.php:33
+msgid "Posizionamenti"
+msgstr ""
+
+#: templates/admin/settings.php:35
+msgid "Pulsante nel footer del sito"
+msgstr ""
+
+#: templates/admin/settings.php:36
+msgid "Link nella lista ordini (Il mio account)"
+msgstr ""
+
+#: templates/admin/settings.php:37
+msgid "Link nel dettaglio ordine"
+msgstr ""
+
+#: templates/admin/settings.php:42
+msgid "Finestra di recesso"
+msgstr ""
+
+#: templates/admin/settings.php:45
+msgid "Giorni di recesso"
+msgstr ""
+
+#: templates/admin/settings.php:46
+msgid "default 14"
+msgstr ""
+
+#: templates/admin/settings.php:49
+msgid "Giorni stimati di consegna dopo il completamento"
+msgstr ""
+
+#: templates/admin/settings.php:50
+msgid "aggiunto alla data di completamento (default 2)"
+msgstr ""
+
+#: templates/admin/settings.php:53
+msgid "Giorni stimati di consegna dalla creazione"
+msgstr ""
+
+#: templates/admin/settings.php:54
+msgid "usato se l’ordine non è completato (default 4)"
+msgstr ""
+
+#: templates/admin/settings.php:58
+msgid "Ospiti e notifiche"
+msgstr ""
+
+#: templates/admin/settings.php:61
+msgid "Validità link di verifica (ore)"
+msgstr ""
+
+#: templates/admin/settings.php:62
+msgid "default 48"
+msgstr ""
+
+#: templates/admin/settings.php:65
+msgid "Email per le notifiche admin"
+msgstr ""
+
+#: templates/admin/settings.php:66
+msgid "vuoto = email amministratore del sito"
+msgstr ""
+
+#: templates/admin/settings.php:70
+msgid "Esclusioni art. 59"
+msgstr ""
+
+#: templates/admin/settings.php:73
+msgid "Motivo predefinito di esclusione"
+msgstr ""
+
+#: templates/admin/settings.php:76
+msgid "Mostrato accanto agli articoli esclusi quando il prodotto non ha un motivo specifico."
+msgstr ""
+
+#: templates/admin/settings.php:80
+msgid "Categorie escluse"
+msgstr ""
+
+#: templates/admin/settings.php:100
+msgid "I prodotti nelle categorie selezionate (e nelle relative sottocategorie) non saranno selezionabili nel recesso."
+msgstr ""
+
+#: templates/admin/settings.php:102
+msgid "Nessuna categoria prodotto disponibile."
+msgstr ""
+
+#: templates/admin/settings.php:111
+msgid "Disinstallazione"
+msgstr ""
+
+#: templates/admin/settings.php:113
+msgid "Conserva le richieste alla disinstallazione (consigliato: sono documenti probatori)"
+msgstr ""
+
+#. translators: %s: URL to WooCommerce email settings.
+#: templates/admin/settings.php:122
+#, php-format
+msgid "I testi delle email (oggetto e intestazione) si modificano in <a href=\"%s\">WooCommerce &rarr; Impostazioni &rarr; Email</a>."
+msgstr ""
+
+#: templates/confirmation.php:22
+msgid "La tua dichiarazione di recesso è stata trasmessa correttamente."
+msgstr ""
+
+#. translators: %s: confirmation date and time.
+#: templates/confirmation.php:30
+#, php-format
+msgid "Data e ora della trasmissione: %s"
+msgstr ""
+
+#: templates/confirmation.php:38
+msgid "Riferimento richiesta"
+msgstr ""
+
+#. translators: %s: customer email.
+#: templates/confirmation.php:61
+#, php-format
+msgid "A breve riceverai un’email di conferma all’indirizzo %s con il contenuto della dichiarazione e la data/ora della trasmissione."
+msgstr ""
+
+#: templates/emails/admin-notification.php:24
+#: templates/emails/plain/admin-notification.php:20
+msgid "È stata trasmessa una nuova dichiarazione di recesso."
+msgstr ""
+
+#: templates/emails/admin-notification.php:27
+#: templates/emails/plain/admin-notification.php:22
+#: templates/emails/plain/withdrawal-receipt.php:38
+#: templates/emails/withdrawal-receipt.php:53
+msgid "Ordine:"
+msgstr ""
+
+#: templates/emails/admin-notification.php:28
+#: templates/emails/plain/admin-notification.php:23
+msgid "Cliente:"
+msgstr ""
+
+#: templates/emails/admin-notification.php:30
+#: templates/emails/plain/admin-notification.php:26
+msgid "Data e ora:"
+msgstr ""
+
+#: templates/emails/admin-notification.php:32
+#: templates/emails/plain/admin-notification.php:29
+msgid "Riferimento:"
+msgstr ""
+
+#: templates/emails/admin-notification.php:37
+msgid "Attenzione:"
+msgstr ""
+
+#: templates/emails/admin-notification.php:38
+msgid "la richiesta è da verificare manualmente (ordine non abbinato o fuori termine stimato)."
+msgstr ""
+
+#: templates/emails/admin-notification.php:43
+msgid "Apri la richiesta di recesso"
+msgstr ""
+
+#: templates/emails/admin-notification.php:46
+msgid "Apri l’ordine"
+msgstr ""
+
+#: templates/emails/guest-verification.php:20
+#: templates/emails/plain/guest-verification.php:16
+msgid "Abbiamo ricevuto una richiesta di recesso relativa al seguente ordine:"
+msgstr ""
+
+#: templates/emails/guest-verification.php:24
+#: templates/emails/plain/guest-verification.php:19
+msgid "Per proseguire e trasmettere la dichiarazione di recesso, apri il link seguente (valido 48 ore):"
+msgstr ""
+
+#: templates/emails/guest-verification.php:28
+msgid "Prosegui con il recesso"
+msgstr ""
+
+#: templates/emails/guest-verification.php:32
+#: templates/emails/plain/guest-verification.php:22
+msgid "Se non hai richiesto tu il recesso, ignora questa email."
+msgstr ""
+
+#: templates/emails/plain/admin-notification.php:32
+msgid "ATTENZIONE: richiesta da verificare manualmente (ordine non abbinato o fuori termine stimato)."
+msgstr ""
+
+#: templates/emails/plain/admin-notification.php:35
+msgid "Apri la richiesta:"
+msgstr ""
+
+#: templates/emails/plain/admin-notification.php:38
+msgid "Apri l’ordine:"
+msgstr ""
+
+#. translators: %s: customer name.
+#: templates/emails/plain/withdrawal-receipt.php:20
+#: templates/emails/withdrawal-receipt.php:26
+#, php-format
+msgid "Gentile %s,"
+msgstr ""
+
+#. translators: %s: order reference.
+#: templates/emails/plain/withdrawal-receipt.php:27
+#: templates/emails/withdrawal-receipt.php:36
+#, php-format
+msgid "confermiamo di aver ricevuto la tua dichiarazione di recesso relativa all’ordine %s."
+msgstr ""
+
+#: templates/emails/plain/withdrawal-receipt.php:33
+#: templates/emails/withdrawal-receipt.php:44
+msgid "Data e ora della trasmissione:"
+msgstr ""
+
+#: templates/emails/plain/withdrawal-receipt.php:36
+#: templates/emails/withdrawal-receipt.php:49
+msgid "Contenuto della dichiarazione"
+msgstr ""
+
+#: templates/emails/plain/withdrawal-receipt.php:37
+#: templates/emails/withdrawal-receipt.php:52
+msgid "Nome e cognome:"
+msgstr ""
+
+#: templates/emails/plain/withdrawal-receipt.php:39
+#: templates/emails/withdrawal-receipt.php:54
+msgid "Email:"
+msgstr ""
+
+#: templates/emails/plain/withdrawal-receipt.php:42
+#: templates/emails/withdrawal-receipt.php:58
+msgid "Articoli:"
+msgstr ""
+
+#: templates/emails/plain/withdrawal-receipt.php:49
+#: templates/emails/withdrawal-receipt.php:70
+msgid "Motivo del reso:"
+msgstr ""
+
+#: templates/emails/plain/withdrawal-receipt.php:52
+#: templates/emails/withdrawal-receipt.php:74
+msgid "Riferimento richiesta:"
+msgstr ""
+
+#: templates/form-declaration.php:34
+#: templates/guest-declaration.php:38
+msgid "Dichiarazione di recesso"
+msgstr ""
+
+#: templates/form-declaration.php:48
+#: templates/guest-declaration.php:56
+msgid "In base ai nostri dati il periodo di recesso potrebbe essere scaduto. Puoi comunque inviare la dichiarazione: sarà registrata con data e ora e verificata dal nostro personale."
+msgstr ""
+
+#. translators: 1: order number, 2: order date.
+#: templates/form-declaration.php:63
+#, php-format
+msgid "n. %1$s del %2$s"
+msgstr ""
+
+#: templates/form-declaration.php:72
+#: templates/form-summary.php:39
+#: templates/guest-declaration.php:76
+msgid "Nome e cognome"
+msgstr ""
+
+#: templates/form-declaration.php:77
+#: templates/form-summary.php:45
+#: templates/guest-declaration.php:71
+msgid "Email per la conferma"
+msgstr ""
+
+#: templates/form-declaration.php:79
+msgid "Riceverai qui la conferma con data e ora della trasmissione."
+msgstr ""
+
+#: templates/form-declaration.php:83
+#: templates/guest-declaration.php:82
+msgid "Articoli dai quali recedere"
+msgstr ""
+
+#: templates/form-declaration.php:114
+#: templates/guest-declaration.php:113
+msgid "Motivo del reso (facoltativo)"
+msgstr ""
+
+#: templates/form-declaration.php:121
+#: templates/guest-declaration.php:118
+msgid "Prosegui al riepilogo"
+msgstr ""
+
+#: templates/form-summary.php:32
+msgid "Riepilogo della dichiarazione"
+msgstr ""
+
+#: templates/form-summary.php:35
+msgid "Controlla i dati. Il recesso sarà trasmesso solo dopo aver premuto il pulsante di conferma."
+msgstr ""
+
+#: templates/form-summary.php:60
+msgid "Motivo del reso"
+msgstr ""
+
+#: templates/form-summary.php:61
+msgid "Non specificato"
+msgstr ""
+
+#: templates/form-summary.php:70
+msgid "Nota: la richiesta risulta oltre il termine stimato e sarà verificata manualmente. La data e l’ora di trasmissione faranno comunque fede."
+msgstr ""
+
+#: templates/form-summary.php:84
+msgid "Modifica"
+msgstr ""
+
+#: templates/form-summary.php:87
+msgid "Conferma recesso"
+msgstr ""
+
+#: templates/guest-declaration.php:52
+msgid "Non siamo riusciti ad abbinare automaticamente l’ordine indicato. Puoi comunque trasmettere la dichiarazione: sarà registrata con data e ora e verificata manualmente."
+msgstr ""
+
+#: templates/guest-lookup.php:29
+msgid "Hai acquistato senza account? Inserisci il numero dell’ordine e l’email usata in fase di acquisto: ti invieremo un link per proseguire con la dichiarazione di recesso."
+msgstr ""
+
+#: templates/guest-lookup.php:47
+msgid "Numero dell’ordine"
+msgstr ""
+
+#: templates/guest-lookup.php:52
+msgid "Email usata per l’ordine"
+msgstr ""
+
+#: templates/guest-lookup.php:57
+msgid "Prosegui"
+msgstr ""
+
+#: templates/guest-verify-sent.php:17
+msgid "Controlla la tua email"
+msgstr ""
+
+#. translators: %s: email address.
+#: templates/guest-verify-sent.php:23
+#, php-format
+msgid "Ti abbiamo inviato un’email a %s con un link per proseguire con la dichiarazione di recesso. Il link è valido 48 ore."
+msgstr ""
+
+#: templates/guest-verify-sent.php:30
+msgid "Se non ricevi l’email entro pochi minuti, controlla la cartella spam."
+msgstr ""
+
+#: templates/order-select.php:22
+msgid "Seleziona l’ordine dal quale desideri recedere. Potrai poi scegliere gli articoli e confermare."
+msgstr ""
+
+#: templates/order-select.php:27
+msgid "Non risultano ordini idonei associati al tuo account."
+msgstr ""
+
+#. translators: %s: order number.
+#: templates/order-select.php:40
+#, php-format
+msgid "Ordine n. %s"
+msgstr ""
+
+#: templates/order-select.php:51
+msgid "Recedere da questo ordine"
+msgstr ""

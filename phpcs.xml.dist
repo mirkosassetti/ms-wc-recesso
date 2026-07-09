@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<ruleset name="MS WC Recesso">
+	<description>WordPress Coding Standards for MS Recesso 54-bis.</description>
+
+	<file>.</file>
+
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/languages/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<rule ref="WordPress-Extra"/>
+	<rule ref="WordPress-Docs"/>
+
+	<!--
+		PSR-4 autoloading: filenames mirror the StudlyCase class name (e.g.
+		Schema.php for class Schema). This is intentionally incompatible with
+		WPCS's "class-schema.php" / hyphenated-lowercase file naming, so we
+		disable those two sniffs.
+	-->
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<severity>0</severity>
+	</rule>
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<severity>0</severity>
+	</rule>
+
+	<!--
+		PHPCompatibility 9.x predates PHP 8.1 native enums and misreads enum
+		methods as plain functions, flagging legitimate uses of $this. The
+		plugin requires PHP 8.1+, so this is a false positive on our enums.
+	-->
+	<rule ref="PHPCompatibility.Variables.ForbiddenThisUseContexts.OutsideObjectContext">
+		<exclude-pattern>src/Model/*</exclude-pattern>
+	</rule>
+
+	<!--
+		Template files are included inside View::render() (a method scope), not
+		the global scope, so their presentation-only variables are effectively
+		local. The static analyser cannot see the include context, so we exempt
+		templates from the global-prefix rule.
+	-->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>templates/*</exclude-pattern>
+	</rule>
+
+	<!--
+		Email templates must invoke WooCommerce's own header/footer hooks
+		(woocommerce_email_header / woocommerce_email_footer) to reuse the
+		standard email wrapper, so the plugin-prefix rule does not apply here.
+	-->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound">
+		<exclude-pattern>templates/emails/*</exclude-pattern>
+	</rule>
+
+	<!--
+		Hook, shortcode and template callbacks must keep their contract
+		signatures even when a parameter is unused, so this analysis warning is
+		not meaningful here.
+	-->
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
+		<severity>0</severity>
+	</rule>
+
+	<!-- Target PHP 8.1+ and WordPress 6.0+. -->
+	<config name="testVersion" value="8.1-"/>
+	<config name="minimum_wp_version" value="6.0"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Enforce the plugin text domain and prefixes. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="ms-wc-recesso"/>
+			</property>
+		</properties>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="ms_wc_recesso"/>
+				<element value="MS\WcRecesso"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- WooCommerce capability used for the plugin's admin screens. -->
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="manage_woocommerce"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>
