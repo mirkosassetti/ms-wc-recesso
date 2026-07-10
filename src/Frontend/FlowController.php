@@ -8,6 +8,7 @@
 namespace MS\WcRecesso\Frontend;
 
 use MS\WcRecesso\Activator;
+use MS\WcRecesso\Domain\AccessPolicy;
 use MS\WcRecesso\Domain\EligibilityService;
 use MS\WcRecesso\Domain\OrderLocator;
 use MS\WcRecesso\Domain\WithdrawalService;
@@ -95,6 +96,10 @@ final class FlowController {
 	public function render( string $context ): string {
 		if ( ! is_user_logged_in() ) {
 			return $this->render_guest( $context );
+		}
+
+		if ( AccessPolicy::current_user_excluded() ) {
+			return $this->notice( 'info', __( 'Il recesso non è disponibile per il tuo tipo di account.', 'ms-wc-recesso' ) );
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Routing only; each handler verifies its own nonce before processing.
@@ -377,6 +382,10 @@ final class FlowController {
 				return $this->render_confirmation( $request );
 			}
 
+			if ( $this->guest_order_blocked( $request ) ) {
+				return $this->blocked_order_notice( $context );
+			}
+
 			return $this->render_guest_form( $request, $token, $context, null, array() );
 		}
 
@@ -431,6 +440,10 @@ final class FlowController {
 
 		$order = $this->locator->locate_guest( $reference, $email );
 
+		if ( $order instanceof WC_Order && AccessPolicy::order_customer_excluded( $order ) ) {
+			return $this->blocked_order_notice( $context );
+		}
+
 		$token   = Tokens::generate();
 		$hours   = max( 1, Options::get_int( 'guest_token_hours', 48 ) );
 		$expires = Dates::to_mysql( Dates::now()->modify( sprintf( '+%d hours', $hours ) ) );
@@ -478,6 +491,10 @@ final class FlowController {
 
 		if ( $request->is_confirmed() ) {
 			return $this->render_confirmation( $request );
+		}
+
+		if ( $this->guest_order_blocked( $request ) ) {
+			return $this->blocked_order_notice( $context );
 		}
 
 		$name   = isset( $_POST['customer_name'] ) ? sanitize_text_field( wp_unslash( $_POST['customer_name'] ) ) : '';
@@ -564,6 +581,10 @@ final class FlowController {
 
 		if ( $request->is_confirmed() ) {
 			return $this->render_confirmation( $request );
+		}
+
+		if ( $this->guest_order_blocked( $request ) ) {
+			return $this->blocked_order_notice( $context );
 		}
 
 		if ( RequestStatus::Draft !== $request->status_enum() ) {
@@ -683,6 +704,32 @@ final class FlowController {
 		}
 
 		return $order;
+	}
+
+	/**
+	 * Whether a guest request targets an order whose customer has an excluded
+	 * role (e.g. B2B), in which case withdrawal is not available.
+	 *
+	 * @param WithdrawalRequest $request The request.
+	 */
+	private function guest_order_blocked( WithdrawalRequest $request ): bool {
+		if ( null === $request->order_id ) {
+			return false;
+		}
+
+		$order = wc_get_order( $request->order_id );
+
+		return $order instanceof WC_Order && AccessPolicy::order_customer_excluded( $order );
+	}
+
+	/**
+	 * Notice shown when withdrawal is not available for an order.
+	 *
+	 * @param string $context Flow context.
+	 */
+	private function blocked_order_notice( string $context ): string {
+		return $this->notice( 'info', __( 'Il recesso non è disponibile per questo ordine.', 'ms-wc-recesso' ) )
+			. $this->back_link( $context );
 	}
 
 	/**

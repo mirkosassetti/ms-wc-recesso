@@ -8,6 +8,7 @@
 namespace MS\WcRecesso\Frontend;
 
 use MS\WcRecesso\Activator;
+use MS\WcRecesso\Domain\AccessPolicy;
 use MS\WcRecesso\Domain\OrderLocator;
 use MS\WcRecesso\Plugin;
 use MS\WcRecesso\Support\Options;
@@ -74,6 +75,10 @@ final class PlacementService {
 	 * Footer link to the standalone withdrawal page.
 	 */
 	public function render_footer_link(): void {
+		if ( AccessPolicy::current_user_excluded() ) {
+			return;
+		}
+
 		$url = $this->page_url();
 
 		if ( '' === $url ) {
@@ -93,6 +98,10 @@ final class PlacementService {
 	 * @param array<string,mixed>|string $atts Shortcode attributes (unused).
 	 */
 	public function link_shortcode( $atts = array() ): string {
+		if ( AccessPolicy::current_user_excluded() ) {
+			return '';
+		}
+
 		$url = $this->page_url();
 
 		if ( '' === $url ) {
@@ -114,7 +123,7 @@ final class PlacementService {
 	 * @return array<string,array<string,string>>
 	 */
 	public function add_order_action( array $actions, WC_Order $order ): array {
-		if ( ! $this->locator->is_status_eligible( $order ) ) {
+		if ( AccessPolicy::current_user_excluded() || ! $this->locator->is_status_eligible( $order ) ) {
 			return $actions;
 		}
 
@@ -132,7 +141,7 @@ final class PlacementService {
 	 * @param WC_Order $order The order.
 	 */
 	public function render_view_order_link( WC_Order $order ): void {
-		if ( ! is_account_page() || ! $this->locator->is_status_eligible( $order ) ) {
+		if ( ! is_account_page() || AccessPolicy::current_user_excluded() || ! $this->locator->is_status_eligible( $order ) ) {
 			return;
 		}
 

@@ -8,7 +8,6 @@
 namespace MS\WcRecesso\Emails;
 
 use MS\WcRecesso\Model\WithdrawalRequest;
-use MS\WcRecesso\Support\Options;
 use WC_Email;
 
 defined( 'ABSPATH' ) || exit;
@@ -35,7 +34,42 @@ class AdminNotificationEmail extends WC_Email {
 
 		parent::__construct();
 
-		$this->recipient = $this->default_recipient();
+		$this->recipient = $this->get_option( 'recipient', get_option( 'admin_email' ) );
+	}
+
+	/**
+	 * Add a "recipient(s)" field so the notification behaves like WooCommerce's
+	 * own admin emails (comma-separated addresses supported by get_recipient()).
+	 */
+	public function init_form_fields(): void {
+		parent::init_form_fields();
+
+		$recipient = array(
+			'title'       => __( 'Destinatari', 'ms-wc-recesso' ),
+			'type'        => 'text',
+			'description' => sprintf(
+				/* translators: %s: default site admin email. */
+				__( 'Indirizzi email dei destinatari, separati da virgola. Vuoto = %s.', 'ms-wc-recesso' ),
+				'<code>' . esc_attr( get_option( 'admin_email' ) ) . '</code>'
+			),
+			'placeholder' => '',
+			'default'     => '',
+			'desc_tip'    => true,
+		);
+
+		// Insert the field right after "enabled".
+		$reordered = array();
+		foreach ( $this->form_fields as $key => $field ) {
+			$reordered[ $key ] = $field;
+			if ( 'enabled' === $key ) {
+				$reordered['recipient'] = $recipient;
+			}
+		}
+		if ( ! isset( $reordered['recipient'] ) ) {
+			$reordered['recipient'] = $recipient;
+		}
+
+		$this->form_fields = $reordered;
 	}
 
 	/**
@@ -53,15 +87,6 @@ class AdminNotificationEmail extends WC_Email {
 	}
 
 	/**
-	 * Recipient default: configured admin address, or the site admin email.
-	 */
-	private function default_recipient(): string {
-		$configured = (string) Options::get( 'admin_notification_email', '' );
-
-		return '' !== $configured ? $configured : get_option( 'admin_email' );
-	}
-
-	/**
 	 * Trigger the email.
 	 *
 	 * @param WithdrawalRequest $request Confirmed request.
@@ -71,10 +96,6 @@ class AdminNotificationEmail extends WC_Email {
 
 		$this->object                            = $request;
 		$this->placeholders['{order_reference}'] = $request->order_reference;
-
-		if ( ! $this->get_recipient() ) {
-			$this->recipient = $this->default_recipient();
-		}
 
 		if ( $this->is_enabled() && $this->get_recipient() ) {
 			$this->send( $this->get_recipient(), $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );

@@ -35,11 +35,40 @@ final class Activator {
 
 	/**
 	 * Persist default settings on first activation (without overwriting).
+	 *
+	 * Customer-facing labels are seeded in Italian when WordPress runs in
+	 * Italian, and in English otherwise, so non-Italian shops get sensible
+	 * defaults out of the box (the source strings are Italian).
 	 */
 	private static function seed_settings(): void {
-		if ( false === get_option( Options::OPTION, false ) ) {
-			add_option( Options::OPTION, Options::defaults() );
+		if ( false !== get_option( Options::OPTION, false ) ) {
+			return;
 		}
+
+		$defaults = array_merge( Options::defaults(), self::localized_label_defaults() );
+
+		add_option( Options::OPTION, $defaults );
+	}
+
+	/**
+	 * Locale-appropriate defaults for the configurable, customer-facing labels.
+	 *
+	 * @return array<string,string>
+	 */
+	private static function localized_label_defaults(): array {
+		if ( 0 === strpos( get_locale(), 'it' ) ) {
+			return array(
+				'button_label'             => 'Recedere dal contratto qui',
+				'confirm_label'            => 'Conferma recesso',
+				'default_exclusion_reason' => 'Articolo escluso dal diritto di recesso ai sensi dell’art. 59 del Codice del Consumo.',
+			);
+		}
+
+		return array(
+			'button_label'             => 'Withdraw from the contract here',
+			'confirm_label'            => 'Confirm withdrawal',
+			'default_exclusion_reason' => 'Item excluded from the right of withdrawal under art. 59 of the Consumer Code.',
+		);
 	}
 
 	/**

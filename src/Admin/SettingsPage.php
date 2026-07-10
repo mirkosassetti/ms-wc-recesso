@@ -73,8 +73,9 @@ final class SettingsPage {
 		$out['completion_delta_days'] = absint( $input['completion_delta_days'] ?? $out['completion_delta_days'] );
 		$out['guest_token_hours']     = max( 1, absint( $input['guest_token_hours'] ?? $out['guest_token_hours'] ) );
 
-		$email                           = isset( $input['admin_notification_email'] ) ? sanitize_email( $input['admin_notification_email'] ) : '';
-		$out['admin_notification_email'] = is_email( $email ) ? $email : '';
+		$roles                 = isset( $input['excluded_roles'] ) ? (array) $input['excluded_roles'] : array();
+		$valid_roles           = array_keys( wp_roles()->get_names() );
+		$out['excluded_roles'] = array_values( array_intersect( array_map( 'sanitize_key', $roles ), $valid_roles ) );
 
 		$categories                      = isset( $input['excluded_categories'] ) ? (array) $input['excluded_categories'] : array();
 		$out['excluded_categories']      = array_values( array_filter( array_map( 'absint', $categories ) ) );

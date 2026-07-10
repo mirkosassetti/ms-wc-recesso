@@ -41,3 +41,4 @@ foreach ( $ms_wc_recesso_tables as $ms_wc_recesso_table ) {
 delete_option( 'ms_wc_recesso_settings' );
 delete_option( 'ms_wc_recesso_db_version' );
 delete_option( 'ms_wc_recesso_page_id' );
+delete_option( 'ms_wc_recesso_recipient_migrated' );

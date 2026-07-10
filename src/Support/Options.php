@@ -54,8 +54,8 @@ final class Options {
 			// Guest verification token lifetime (hours).
 			'guest_token_hours'        => 48,
 
-			// Admin notification recipient (empty => site admin email).
-			'admin_notification_email' => '',
+			// User roles for which withdrawal is disabled (e.g. B2B).
+			'excluded_roles'           => array(),
 
 			// Art. 59 exclusions.
 			'excluded_categories'      => array(),

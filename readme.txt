@@ -4,7 +4,7 @@ Tags: woocommerce, recesso, codice del consumo, consumatori, hpos
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.1
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,11 @@ No per impostazione predefinita: le richieste di recesso sono documenti probator
 Copiando i file da `templates/` del plugin in `tuo-tema/ms-wc-recesso/` (front-end) o `tuo-tema/woocommerce/ms-wc-recesso/` e `tuo-tema/woocommerce/emails/` (email).
 
 == Changelog ==
+
+= 0.2.0 =
+* I destinatari della notifica admin si configurano ora in WooCommerce → Impostazioni → Email (più indirizzi separati da virgola), come le altre email WooCommerce. Migrazione automatica dell'eventuale valore precedente.
+* Alla prima attivazione le etichette configurabili vengono impostate in italiano se WordPress è in italiano, altrimenti in inglese.
+* Nuova impostazione: ruoli utente per cui disabilitare il recesso (es. clienti B2B); valida per flusso da account, link e flusso guest.
 
 = 0.1.0 =
 * Versione iniziale: flusso loggato e guest, email transazionali (verifica, ricevuta, notifica admin), pannello admin, esclusioni art. 59, compatibilità HPOS.

@@ -1,6 +1,7 @@
 /vendor/
 /node_modules/
 /dist/
+composer.lock
 .phpcs.cache
 .phpunit.result.cache
 *.log

@@ -55,15 +55,33 @@ $ms_emails_url = admin_url( 'admin.php?page=wc-settings&tab=email' );
 			</tr>
 		</table>
 
-		<h2><?php esc_html_e( 'Ospiti e notifiche', 'ms-wc-recesso' ); ?></h2>
+		<h2><?php esc_html_e( 'Ospiti', 'ms-wc-recesso' ); ?></h2>
 		<table class="form-table" role="presentation">
 			<tr>
 				<th scope="row"><label for="ms-token-hours"><?php esc_html_e( 'Validità link di verifica (ore)', 'ms-wc-recesso' ); ?></label></th>
 				<td><input type="number" min="1" id="ms-token-hours" name="ms_wc_recesso_settings[guest_token_hours]" value="<?php echo esc_attr( (string) $options['guest_token_hours'] ); ?>" /> <span class="description"><?php esc_html_e( 'default 48', 'ms-wc-recesso' ); ?></span></td>
 			</tr>
+		</table>
+
+		<h2><?php esc_html_e( 'Disponibilità per ruolo', 'ms-wc-recesso' ); ?></h2>
+		<table class="form-table" role="presentation">
 			<tr>
-				<th scope="row"><label for="ms-admin-email"><?php esc_html_e( 'Email per le notifiche admin', 'ms-wc-recesso' ); ?></label></th>
-				<td><input type="email" id="ms-admin-email" class="regular-text" name="ms_wc_recesso_settings[admin_notification_email]" value="<?php echo esc_attr( (string) $options['admin_notification_email'] ); ?>" /> <span class="description"><?php esc_html_e( 'vuoto = email amministratore del sito', 'ms-wc-recesso' ); ?></span></td>
+				<th scope="row"><?php esc_html_e( 'Ruoli senza recesso', 'ms-wc-recesso' ); ?></th>
+				<td>
+					<?php
+					$ms_roles          = wp_roles()->get_names();
+					$ms_excluded_roles = array_map( 'strval', (array) $options['excluded_roles'] );
+					?>
+					<fieldset id="ms-excluded-roles" style="max-height:240px;overflow:auto;border:1px solid #dcdcde;border-radius:4px;padding:10px 14px;background:#fff;column-width:220px;column-gap:28px;max-width:720px;">
+						<?php foreach ( $ms_roles as $ms_role_slug => $ms_role_name ) : ?>
+							<label style="display:block;margin:0 0 8px;break-inside:avoid;">
+								<input type="checkbox" name="ms_wc_recesso_settings[excluded_roles][]" value="<?php echo esc_attr( (string) $ms_role_slug ); ?>" <?php checked( in_array( (string) $ms_role_slug, $ms_excluded_roles, true ) ); ?> />
+								<?php echo esc_html( translate_user_role( $ms_role_name ) ); ?>
+							</label>
+						<?php endforeach; ?>
+					</fieldset>
+					<p class="description"><?php esc_html_e( 'Per gli utenti con uno dei ruoli selezionati il recesso è disattivato (es. clienti B2B). Vale per il flusso da account, i link e il flusso guest sugli ordini di quei clienti.', 'ms-wc-recesso' ); ?></p>
+				</td>
 			</tr>
 		</table>
 
@@ -119,7 +137,7 @@ $ms_emails_url = admin_url( 'admin.php?page=wc-settings&tab=email' );
 			<?php
 			printf(
 				/* translators: %s: URL to WooCommerce email settings. */
-				wp_kses_post( __( 'I testi delle email (oggetto e intestazione) si modificano in <a href="%s">WooCommerce &rarr; Impostazioni &rarr; Email</a>.', 'ms-wc-recesso' ) ),
+				wp_kses_post( __( 'I testi e i destinatari delle email si gestiscono in <a href="%s">WooCommerce &rarr; Impostazioni &rarr; Email</a>.', 'ms-wc-recesso' ) ),
 				esc_url( $ms_emails_url )
 			);
 			?>
