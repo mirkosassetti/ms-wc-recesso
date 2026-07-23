@@ -54,6 +54,9 @@ final class Options {
 			// Guest verification token lifetime (hours).
 			'guest_token_hours'        => 48,
 
+			// Anti-bot honeypot on the public guest form.
+			'honeypot_enabled'         => true,
+
 			// User roles for which withdrawal is disabled (e.g. B2B).
 			'excluded_roles'           => array(),
 

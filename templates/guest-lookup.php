@@ -21,6 +21,7 @@ $ms_errors   = isset( $args['errors'] ) && is_array( $args['errors'] ) ? $args['
 
 $ms_reference = isset( $ms_prefill['reference'] ) ? (string) $ms_prefill['reference'] : '';
 $ms_email     = isset( $ms_prefill['email'] ) ? (string) $ms_prefill['email'] : '';
+$ms_honeypot  = ! isset( $args['honeypot'] ) || (bool) $args['honeypot'];
 ?>
 <div class="ms-recesso ms-recesso--guest-lookup">
 	<h2 class="ms-recesso__title"><?php esc_html_e( 'Recesso dal contratto', 'ms-wc-recesso' ); ?></h2>
@@ -42,6 +43,13 @@ $ms_email     = isset( $ms_prefill['email'] ) ? (string) $ms_prefill['email'] : 
 	<form class="ms-recesso__form" method="post" action="<?php echo esc_url( $ms_base_url ); ?>">
 		<input type="hidden" name="ms_wc_recesso_action" value="guest_lookup" />
 		<input type="hidden" name="_ms_wc_recesso_nonce" value="<?php echo esc_attr( $ms_nonce ); ?>" />
+
+		<?php if ( $ms_honeypot ) : ?>
+			<div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+				<label for="ms-recesso-website">Website</label>
+				<input type="text" id="ms-recesso-website" name="website" value="" tabindex="-1" autocomplete="off" />
+			</div>
+		<?php endif; ?>
 
 		<p class="ms-recesso__field">
 			<label class="ms-recesso__label" for="ms-recesso-reference"><?php esc_html_e( 'Numero dell’ordine', 'ms-wc-recesso' ); ?></label>

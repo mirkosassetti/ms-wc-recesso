@@ -16,7 +16,10 @@ In produzione non serve Composer: l'autoloader SPL di fallback (in `ms-wc-recess
 composer install
 composer lint        # phpcs (WordPress Coding Standards)
 composer lint:fix    # phpcbf
+composer test        # PHPUnit (unit tests on the domain services)
 ```
+
+I test unitari (`tests/`) coprono i servizi di dominio — calcolo finestra (`Dates`), eleggibilità ed esclusioni art. 59 (`EligibilityService`, `ExclusionRules`), esclusione per ruolo (`AccessPolicy`) e macchina a stati (`RequestStatus`) — isolando WordPress/WooCommerce con Brain Monkey + Mockery (nessun DB richiesto).
 
 ## Architettura
 
@@ -105,7 +108,7 @@ wp i18n make-pot . languages/ms-wc-recesso.pot --domain=ms-wc-recesso --exclude=
 
 GitHub Actions:
 
-- **Lint** (`.github/workflows/lint.yml`): a ogni push su `main` e a ogni pull request esegue `php -l` e phpcs (WordPress Coding Standards).
+- **Lint & Test** (`.github/workflows/lint.yml`): a ogni push su `main` e a ogni pull request, su matrice **PHP 8.1 / 8.2 / 8.3**, esegue `php -l`, phpcs (WordPress Coding Standards) e PHPUnit.
 - **Release** (`.github/workflows/release.yml`): al push di un tag `v*` verifica che il tag coincida con l'header `Version:`, genera lo zip con `bin/build.php` e pubblica una GitHub Release con l'asset allegato.
 
 Per rilasciare una nuova versione:

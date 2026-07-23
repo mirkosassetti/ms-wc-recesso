@@ -9,16 +9,24 @@
 	"require-dev": {
 		"wp-coding-standards/wpcs": "^3.0",
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
-		"dealerdirect/phpcodesniffer-composer-installer": "^1.0"
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"phpunit/phpunit": "^9.6",
+		"brain/monkey": "^2.6"
 	},
 	"autoload": {
 		"psr-4": {
 			"MS\\WcRecesso\\": "src/"
 		}
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"MS\\WcRecesso\\Tests\\": "tests/"
+		}
+	},
 	"scripts": {
 		"lint": "phpcs",
 		"lint:fix": "phpcbf",
+		"test": "phpunit",
 		"build": "php bin/build.php"
 	},
 	"config": {

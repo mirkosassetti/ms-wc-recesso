@@ -244,6 +244,31 @@ final class RequestRepository {
 	}
 
 	/**
+	 * Permanently delete requests (and their log entries) by id.
+	 *
+	 * @param array<int,int> $ids Request ids.
+	 * @return int Number of requests deleted.
+	 */
+	public function delete_many( array $ids ): int {
+		global $wpdb;
+
+		$ids = array_values( array_filter( array_map( 'absint', $ids ) ) );
+
+		if ( empty( $ids ) ) {
+			return 0;
+		}
+
+		$table        = Schema::requests_table();
+		$log          = Schema::log_table();
+		$placeholders = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
+
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$log} WHERE request_id IN ({$placeholders})", $ids ) );
+		$deleted = $wpdb->query( $wpdb->prepare( "DELETE FROM {$table} WHERE id IN ({$placeholders})", $ids ) );
+
+		return (int) $deleted;
+	}
+
+	/**
 	 * Build the WHERE clause and bound params for list queries.
 	 *
 	 * @param array<string,mixed> $args Query args.

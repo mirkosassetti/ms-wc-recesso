@@ -3,7 +3,7 @@
  * Plugin Name:       MS Recesso 54-bis per WooCommerce
  * Plugin URI:        https://github.com/mirkosassetti/ms-wc-recesso
  * Description:       Implementa la funzione di recesso obbligatoria ex art. 54-bis del Codice del Consumo (D.Lgs. 209/2025, Direttiva UE 2023/2673) per e-commerce B2C.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Requires at least: 6.0
  * Requires PHP:      8.1
  * Author:            Mirko Sassetti
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants.
-define( 'MS_WC_RECESSO_VERSION', '0.2.0' );
+define( 'MS_WC_RECESSO_VERSION', '0.2.1' );
 define( 'MS_WC_RECESSO_DB_VERSION', '1.0.0' );
 define( 'MS_WC_RECESSO_FILE', __FILE__ );
 define( 'MS_WC_RECESSO_DIR', plugin_dir_path( __FILE__ ) );

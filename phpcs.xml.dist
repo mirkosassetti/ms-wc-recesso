@@ -10,6 +10,8 @@
 	<!-- Dev-only CLI build script and build output: not distributed plugin code. -->
 	<exclude-pattern>/bin/*</exclude-pattern>
 	<exclude-pattern>/dist/*</exclude-pattern>
+	<!-- Unit tests use PHPUnit/Brain Monkey conventions, not WP plugin code. -->
+	<exclude-pattern>/tests/*</exclude-pattern>
 
 	<arg name="extensions" value="php"/>
 	<arg name="colors"/>

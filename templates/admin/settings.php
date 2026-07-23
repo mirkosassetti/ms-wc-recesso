@@ -61,6 +61,13 @@ $ms_emails_url = admin_url( 'admin.php?page=wc-settings&tab=email' );
 				<th scope="row"><label for="ms-token-hours"><?php esc_html_e( 'Validità link di verifica (ore)', 'ms-wc-recesso' ); ?></label></th>
 				<td><input type="number" min="1" id="ms-token-hours" name="ms_wc_recesso_settings[guest_token_hours]" value="<?php echo esc_attr( (string) $options['guest_token_hours'] ); ?>" /> <span class="description"><?php esc_html_e( 'default 48', 'ms-wc-recesso' ); ?></span></td>
 			</tr>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'Anti-bot', 'ms-wc-recesso' ); ?></th>
+				<td>
+					<label><input type="checkbox" name="ms_wc_recesso_settings[honeypot_enabled]" value="1" <?php checked( ! empty( $options['honeypot_enabled'] ) ); ?> /> <?php esc_html_e( 'Attiva la protezione honeypot sul modulo di richiesta guest', 'ms-wc-recesso' ); ?></label>
+					<p class="description"><?php esc_html_e( 'Aggiunge un campo trappola nascosto: i bot che lo compilano vengono scartati senza creare richieste.', 'ms-wc-recesso' ); ?></p>
+				</td>
+			</tr>
 		</table>
 
 		<h2><?php esc_html_e( 'Disponibilità per ruolo', 'ms-wc-recesso' ); ?></h2>

@@ -405,6 +405,16 @@ final class FlowController {
 			return $this->notice( 'error', __( 'Sessione scaduta, riprova.', 'ms-wc-recesso' ) ) . $this->back_link( $context );
 		}
 
+		// Honeypot: a filled trap field means a bot. Pretend success (same
+		// "email sent" screen) without creating a request or sending anything.
+		if ( Options::get_bool( 'honeypot_enabled', true ) ) {
+			$honeypot = isset( $_POST['website'] ) ? sanitize_text_field( wp_unslash( $_POST['website'] ) ) : '';
+			if ( '' !== $honeypot ) {
+				$decoy_email = isset( $_POST['customer_email'] ) ? sanitize_email( wp_unslash( $_POST['customer_email'] ) ) : '';
+				return $this->render_guest_verify_sent( $decoy_email );
+			}
+		}
+
 		if ( ! RateLimiter::attempt( 'lookup_' . $this->ip_hash(), self::GUEST_RATE_MAX, HOUR_IN_SECONDS ) ) {
 			return $this->notice( 'error', __( 'Troppi tentativi. Riprova tra qualche minuto.', 'ms-wc-recesso' ) );
 		}
@@ -611,6 +621,7 @@ final class FlowController {
 				'nonce'    => wp_create_nonce( self::NONCE_GUEST_LOOKUP ),
 				'prefill'  => $prefill,
 				'errors'   => $errors,
+				'honeypot' => Options::get_bool( 'honeypot_enabled', true ),
 			)
 		);
 	}

@@ -4,7 +4,7 @@ Tags: woocommerce, recesso, codice del consumo, consumatori, hpos
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.1
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,11 @@ No per impostazione predefinita: le richieste di recesso sono documenti probator
 Copiando i file da `templates/` del plugin in `tuo-tema/ms-wc-recesso/` (front-end) o `tuo-tema/woocommerce/ms-wc-recesso/` e `tuo-tema/woocommerce/emails/` (email).
 
 == Changelog ==
+
+= 0.2.1 =
+* Protezione anti-bot (honeypot) sul modulo di richiesta guest, con opzione per abilitarla/disabilitarla (attiva di default).
+* Eliminazione multipla (bulk delete) delle richieste dalla lista in amministrazione, con conferma, utile per ripulire lo spam.
+* Opzione standard "elementi per pagina" (Impostazioni schermata) nella lista delle richieste.
 
 = 0.2.0 =
 * I destinatari della notifica admin si configurano ora in WooCommerce → Impostazioni → Email (più indirizzi separati da virgola), come le altre email WooCommerce. Migrazione automatica dell'eventuale valore precedente.

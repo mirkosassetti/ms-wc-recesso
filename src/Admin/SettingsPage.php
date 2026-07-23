@@ -72,6 +72,7 @@ final class SettingsPage {
 		$out['creation_delta_days']   = absint( $input['creation_delta_days'] ?? $out['creation_delta_days'] );
 		$out['completion_delta_days'] = absint( $input['completion_delta_days'] ?? $out['completion_delta_days'] );
 		$out['guest_token_hours']     = max( 1, absint( $input['guest_token_hours'] ?? $out['guest_token_hours'] ) );
+		$out['honeypot_enabled']      = ! empty( $input['honeypot_enabled'] );
 
 		$roles                 = isset( $input['excluded_roles'] ) ? (array) $input['excluded_roles'] : array();
 		$valid_roles           = array_keys( wp_roles()->get_names() );

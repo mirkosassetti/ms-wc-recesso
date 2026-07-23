@@ -28,6 +28,11 @@ final class RequestsListTable extends \WP_List_Table {
 	public const PAGE = 'ms-wc-recesso-requests';
 
 	/**
+	 * Per-user screen option key for "items per page".
+	 */
+	public const PER_PAGE_OPTION = 'ms_wc_recesso_requests_per_page';
+
+	/**
 	 * Repository.
 	 *
 	 * @var RequestRepository
@@ -58,12 +63,33 @@ final class RequestsListTable extends \WP_List_Table {
 	 */
 	public function get_columns(): array {
 		return array(
+			'cb'         => '<input type="checkbox" />',
 			'reference'  => __( 'Richiesta', 'ms-wc-recesso' ),
 			'customer'   => __( 'Cliente', 'ms-wc-recesso' ),
 			'status'     => __( 'Stato', 'ms-wc-recesso' ),
 			'review'     => __( 'Verifica', 'ms-wc-recesso' ),
 			'order'      => __( 'Ordine', 'ms-wc-recesso' ),
 			'created_at' => __( 'Creata', 'ms-wc-recesso' ),
+		);
+	}
+
+	/**
+	 * Checkbox column for bulk selection.
+	 *
+	 * @param WithdrawalRequest $item Request.
+	 */
+	public function column_cb( $item ): string {
+		return sprintf( '<input type="checkbox" name="request_ids[]" value="%d" />', (int) $item->id );
+	}
+
+	/**
+	 * Bulk actions.
+	 *
+	 * @return array<string,string>
+	 */
+	public function get_bulk_actions(): array {
+		return array(
+			'delete' => __( 'Elimina definitivamente', 'ms-wc-recesso' ),
 		);
 	}
 
@@ -126,7 +152,7 @@ final class RequestsListTable extends \WP_List_Table {
 	 * Load items.
 	 */
 	public function prepare_items(): void {
-		$per_page = 20;
+		$per_page = $this->get_items_per_page( self::PER_PAGE_OPTION, 20 );
 		$paged    = $this->get_pagenum();
 		$status   = $this->current_status();
 		$search   = $this->current_search();

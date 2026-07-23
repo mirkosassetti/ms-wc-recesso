@@ -59,6 +59,9 @@ final class AdminPages {
 	public function register(): void {
 		add_action( 'admin_menu', array( $this, 'menu' ) );
 		add_action( 'admin_post_' . self::CHANGE_ACTION, array( $this, 'handle_change_status' ) );
+		add_action( 'admin_init', array( $this, 'maybe_handle_bulk_delete' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
+		add_filter( 'set_screen_option_' . RequestsListTable::PER_PAGE_OPTION, array( $this, 'save_screen_option' ), 10, 3 );
 		$this->settings->register();
 	}
 
@@ -66,7 +69,7 @@ final class AdminPages {
 	 * Register the admin menu.
 	 */
 	public function menu(): void {
-		add_menu_page(
+		$hook = add_menu_page(
 			__( 'Recesso 54-bis', 'ms-wc-recesso' ),
 			__( 'Recesso', 'ms-wc-recesso' ),
 			self::CAP,
@@ -75,6 +78,8 @@ final class AdminPages {
 			'dashicons-undo',
 			56
 		);
+
+		add_action( 'load-' . $hook, array( $this, 'add_screen_options' ) );
 
 		add_submenu_page(
 			RequestsListTable::PAGE,
@@ -124,6 +129,21 @@ final class AdminPages {
 		<div class="wrap">
 			<h1 class="wp-heading-inline"><?php esc_html_e( 'Richieste di recesso', 'ms-wc-recesso' ); ?></h1>
 			<hr class="wp-header-end" />
+			<?php
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only success flag after a redirect.
+			$ms_deleted = isset( $_GET['deleted'] ) ? absint( wp_unslash( $_GET['deleted'] ) ) : 0;
+			if ( $ms_deleted > 0 ) :
+				?>
+				<div class="notice notice-success is-dismissible"><p>
+					<?php
+					printf(
+						/* translators: %d: number of deleted requests. */
+						esc_html( _n( '%d richiesta eliminata.', '%d richieste eliminate.', $ms_deleted, 'ms-wc-recesso' ) ),
+						(int) $ms_deleted
+					);
+					?>
+				</p></div>
+			<?php endif; ?>
 			<?php $table->views(); ?>
 			<form method="get">
 				<input type="hidden" name="page" value="<?php echo esc_attr( RequestsListTable::PAGE ); ?>" />
@@ -190,5 +210,102 @@ final class AdminPages {
 			)
 		);
 		exit;
+	}
+
+	/**
+	 * Handle the "delete" bulk action on the requests list (PRG: redirect after).
+	 */
+	public function maybe_handle_bulk_delete(): void {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Routing check; the nonce is verified below before any deletion.
+		$page = isset( $_REQUEST['page'] ) ? sanitize_key( wp_unslash( $_REQUEST['page'] ) ) : '';
+		if ( RequestsListTable::PAGE !== $page ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Routing check; nonce verified below.
+		$action = isset( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : '';
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Routing check; nonce verified below.
+		$action2 = isset( $_REQUEST['action2'] ) ? sanitize_key( wp_unslash( $_REQUEST['action2'] ) ) : '';
+		if ( 'delete' !== $action && 'delete' !== $action2 ) {
+			return;
+		}
+
+		if ( ! current_user_can( self::CAP ) ) {
+			return;
+		}
+
+		check_admin_referer( 'bulk-ms_wc_recesso_requests' );
+
+		$ids     = isset( $_REQUEST['request_ids'] ) ? array_map( 'absint', (array) wp_unslash( $_REQUEST['request_ids'] ) ) : array();
+		$deleted = ! empty( $ids ) ? $this->repository->delete_many( $ids ) : 0;
+
+		wp_safe_redirect(
+			add_query_arg(
+				array(
+					'page'    => RequestsListTable::PAGE,
+					'deleted' => (int) $deleted,
+				),
+				admin_url( 'admin.php' )
+			)
+		);
+		exit;
+	}
+
+	/**
+	 * Enqueue the admin confirmation script on the requests list page.
+	 *
+	 * @param string $hook Current admin page hook suffix.
+	 */
+	public function enqueue_admin_assets( $hook ): void {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only page check for asset loading.
+		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+		if ( RequestsListTable::PAGE !== $page ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'ms-wc-recesso-admin',
+			MS_WC_RECESSO_URL . 'assets/js/admin.js',
+			array(),
+			MS_WC_RECESSO_VERSION,
+			true
+		);
+
+		wp_localize_script(
+			'ms-wc-recesso-admin',
+			'msRecessoAdmin',
+			array(
+				'confirmDelete' => __( 'Eliminare definitivamente le richieste selezionate? L’operazione non è reversibile.', 'ms-wc-recesso' ),
+			)
+		);
+	}
+
+	/**
+	 * Register the standard "items per page" screen option on the list page.
+	 */
+	public function add_screen_options(): void {
+		if ( ! current_user_can( self::CAP ) ) {
+			return;
+		}
+
+		add_screen_option(
+			'per_page',
+			array(
+				'label'   => __( 'Richieste per pagina', 'ms-wc-recesso' ),
+				'default' => 20,
+				'option'  => RequestsListTable::PER_PAGE_OPTION,
+			)
+		);
+	}
+
+	/**
+	 * Persist the chosen "items per page" value.
+	 *
+	 * @param mixed  $status Default screen-option value (false).
+	 * @param string $option Option name.
+	 * @param mixed  $value  Submitted per-page value.
+	 */
+	public function save_screen_option( $status, $option, $value ): int {
+		return max( 1, absint( $value ) );
 	}
 }

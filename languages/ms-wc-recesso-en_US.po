@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: MS Recesso 54-bis per WooCommerce 0.2.0\n"
+"Project-Id-Version: MS Recesso 54-bis per WooCommerce 0.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ms-wc-recesso\n"
 "Last-Translator: Mirko Sassetti\n"
 "Language-Team: English (United States)\n"
@@ -24,48 +24,48 @@ msgstr "Implements the mandatory withdrawal function under art. 54-bis of the It
 
 #: src/Activator.php:107
 #: src/Frontend/MyAccountEndpoint.php:76
-#: templates/guest-lookup.php:26
+#: templates/guest-lookup.php:27
 #: templates/order-select.php:19
 msgid "Recesso dal contratto"
 msgstr "Withdrawal from the contract"
 
-#: src/Admin/AdminPages.php:70
+#: src/Admin/AdminPages.php:73
 #: src/Admin/OrderMetabox.php:55
 msgid "Recesso 54-bis"
 msgstr "Withdrawal 54-bis"
 
-#: src/Admin/AdminPages.php:71
+#: src/Admin/AdminPages.php:74
 #: src/Frontend/MyAccountEndpoint.php:58
 #: src/Frontend/MyAccountEndpoint.php:64
 msgid "Recesso"
 msgstr "Withdrawal"
 
-#: src/Admin/AdminPages.php:81
-#: src/Admin/AdminPages.php:125
+#: src/Admin/AdminPages.php:86
+#: src/Admin/AdminPages.php:130
 msgid "Richieste di recesso"
 msgstr "Withdrawal requests"
 
-#: src/Admin/AdminPages.php:82
+#: src/Admin/AdminPages.php:87
 msgid "Richieste"
 msgstr "Requests"
 
-#: src/Admin/AdminPages.php:90
+#: src/Admin/AdminPages.php:95
 msgid "Impostazioni recesso"
 msgstr "Withdrawal settings"
 
-#: src/Admin/AdminPages.php:91
+#: src/Admin/AdminPages.php:96
 msgid "Impostazioni"
 msgstr "Settings"
 
-#: src/Admin/AdminPages.php:131
+#: src/Admin/AdminPages.php:151
 msgid "Cerca"
 msgstr "Search"
 
-#: src/Admin/AdminPages.php:148
+#: src/Admin/AdminPages.php:168
 msgid "Richiesta non trovata."
 msgstr "Request not found."
 
-#: src/Admin/AdminPages.php:163
+#: src/Admin/AdminPages.php:183
 msgid "Permesso negato."
 msgstr "Permission denied."
 
@@ -93,25 +93,25 @@ msgstr "Exclusion reason"
 msgid "Mostrato al cliente accanto all’articolo escluso (facoltativo)."
 msgstr "Shown to the customer next to the excluded item (optional)."
 
-#: src/Admin/RequestsListTable.php:61
+#: src/Admin/RequestsListTable.php:67
 msgid "Richiesta"
 msgstr "Request"
 
-#: src/Admin/RequestsListTable.php:62
+#: src/Admin/RequestsListTable.php:68
 #: templates/admin/request-detail.php:47
 msgid "Cliente"
 msgstr "Customer"
 
-#: src/Admin/RequestsListTable.php:63
+#: src/Admin/RequestsListTable.php:69
 #: templates/admin/request-detail.php:46
 msgid "Stato"
 msgstr "Status"
 
-#: src/Admin/RequestsListTable.php:64
+#: src/Admin/RequestsListTable.php:70
 msgid "Verifica"
 msgstr "Review"
 
-#: src/Admin/RequestsListTable.php:65
+#: src/Admin/RequestsListTable.php:71
 #: templates/admin/request-detail.php:50
 #: templates/confirmation.php:41
 #: templates/form-declaration.php:58
@@ -120,19 +120,19 @@ msgstr "Review"
 msgid "Ordine"
 msgstr "Order"
 
-#: src/Admin/RequestsListTable.php:66
+#: src/Admin/RequestsListTable.php:72
 msgid "Creata"
 msgstr "Created"
 
-#: src/Admin/RequestsListTable.php:103
+#: src/Admin/RequestsListTable.php:129
 msgid "Tutte"
 msgstr "All"
 
-#: src/Admin/RequestsListTable.php:199
+#: src/Admin/RequestsListTable.php:225
 msgid "Da verificare"
 msgstr "To review"
 
-#: src/Admin/RequestsListTable.php:228
+#: src/Admin/RequestsListTable.php:254
 msgid "Nessuna richiesta di recesso."
 msgstr "No withdrawal requests."
 
@@ -209,13 +209,13 @@ msgstr "This order is not eligible for withdrawal."
 #: src/Frontend/FlowController.php:146
 #: src/Frontend/FlowController.php:229
 #: src/Frontend/FlowController.php:405
-#: src/Frontend/FlowController.php:482
-#: src/Frontend/FlowController.php:572
+#: src/Frontend/FlowController.php:492
+#: src/Frontend/FlowController.php:582
 msgid "Sessione scaduta, riprova."
 msgstr "Session expired, please try again."
 
 #: src/Frontend/FlowController.php:172
-#: src/Frontend/FlowController.php:520
+#: src/Frontend/FlowController.php:530
 msgid "Inserisci il tuo nome."
 msgstr "Please enter your name."
 
@@ -224,7 +224,7 @@ msgid "Inserisci un indirizzo email valido per ricevere la conferma."
 msgstr "Please enter a valid email address to receive the confirmation."
 
 #: src/Frontend/FlowController.php:178
-#: src/Frontend/FlowController.php:523
+#: src/Frontend/FlowController.php:533
 msgid "Seleziona almeno un articolo idoneo al recesso."
 msgstr "Please select at least one item eligible for withdrawal."
 
@@ -233,32 +233,32 @@ msgid "Richiesta di recesso non trovata."
 msgstr "Withdrawal request not found."
 
 #: src/Frontend/FlowController.php:377
-#: src/Frontend/FlowController.php:489
-#: src/Frontend/FlowController.php:579
+#: src/Frontend/FlowController.php:499
+#: src/Frontend/FlowController.php:589
 msgid "Il link di verifica non è valido o è scaduto."
 msgstr "The verification link is invalid or has expired."
 
-#: src/Frontend/FlowController.php:409
+#: src/Frontend/FlowController.php:419
 msgid "Troppi tentativi. Riprova tra qualche minuto."
 msgstr "Too many attempts. Please try again in a few minutes."
 
-#: src/Frontend/FlowController.php:417
+#: src/Frontend/FlowController.php:427
 msgid "Inserisci il numero dell’ordine."
 msgstr "Please enter the order number."
 
-#: src/Frontend/FlowController.php:420
+#: src/Frontend/FlowController.php:430
 msgid "Inserisci un indirizzo email valido."
 msgstr "Please enter a valid email address."
 
-#: src/Frontend/FlowController.php:552
+#: src/Frontend/FlowController.php:562
 msgid "Non siamo riusciti ad abbinare automaticamente l’ordine indicato: la richiesta sarà comunque registrata e verificata manualmente."
 msgstr "We could not automatically match the order provided: the request will still be recorded and verified manually."
 
-#: src/Frontend/FlowController.php:591
+#: src/Frontend/FlowController.php:601
 msgid "Questa richiesta non può essere confermata."
 msgstr "This request cannot be confirmed."
 
-#: src/Frontend/FlowController.php:803
+#: src/Frontend/FlowController.php:814
 msgid "Torna indietro"
 msgstr "Go back"
 
@@ -315,7 +315,7 @@ msgid "Stato aggiornato."
 msgstr "Status updated."
 
 #: templates/admin/request-detail.php:42
-#: templates/admin/settings.php:126
+#: templates/admin/settings.php:133
 msgid "Dati"
 msgstr "Data"
 
@@ -449,35 +449,35 @@ msgstr "Verification link validity (hours)"
 msgid "default 48"
 msgstr "default 48"
 
-#: templates/admin/settings.php:88
+#: templates/admin/settings.php:95
 msgid "Esclusioni art. 59"
 msgstr "Art. 59 exclusions"
 
-#: templates/admin/settings.php:91
+#: templates/admin/settings.php:98
 msgid "Motivo predefinito di esclusione"
 msgstr "Default exclusion reason"
 
-#: templates/admin/settings.php:94
+#: templates/admin/settings.php:101
 msgid "Mostrato accanto agli articoli esclusi quando il prodotto non ha un motivo specifico."
 msgstr "Shown next to excluded items when the product has no specific reason."
 
-#: templates/admin/settings.php:98
+#: templates/admin/settings.php:105
 msgid "Categorie escluse"
 msgstr "Excluded categories"
 
-#: templates/admin/settings.php:118
+#: templates/admin/settings.php:125
 msgid "I prodotti nelle categorie selezionate (e nelle relative sottocategorie) non saranno selezionabili nel recesso."
 msgstr "Products in the selected categories (and their subcategories) cannot be selected for withdrawal."
 
-#: templates/admin/settings.php:120
+#: templates/admin/settings.php:127
 msgid "Nessuna categoria prodotto disponibile."
 msgstr "No product categories available."
 
-#: templates/admin/settings.php:129
+#: templates/admin/settings.php:136
 msgid "Disinstallazione"
 msgstr "Uninstall"
 
-#: templates/admin/settings.php:131
+#: templates/admin/settings.php:138
 msgid "Conserva le richieste alla disinstallazione (consigliato: sono documenti probatori)"
 msgstr "Keep requests on uninstall (recommended: they are evidentiary records)"
 
@@ -703,19 +703,19 @@ msgstr "Confirm withdrawal"
 msgid "Non siamo riusciti ad abbinare automaticamente l’ordine indicato. Puoi comunque trasmettere la dichiarazione: sarà registrata con data e ora e verificata manualmente."
 msgstr "We could not automatically match the order provided. You can still transmit the declaration: it will be recorded with date and time and verified manually."
 
-#: templates/guest-lookup.php:29
+#: templates/guest-lookup.php:30
 msgid "Hai acquistato senza account? Inserisci il numero dell’ordine e l’email usata in fase di acquisto: ti invieremo un link per proseguire con la dichiarazione di recesso."
 msgstr "Purchased without an account? Enter the order number and the email used at purchase: we will send you a link to proceed with the withdrawal declaration."
 
-#: templates/guest-lookup.php:47
+#: templates/guest-lookup.php:55
 msgid "Numero dell’ordine"
 msgstr "Order number"
 
-#: templates/guest-lookup.php:52
+#: templates/guest-lookup.php:60
 msgid "Email usata per l’ordine"
 msgstr "Email used for the order"
 
-#: templates/guest-lookup.php:57
+#: templates/guest-lookup.php:65
 msgid "Prosegui"
 msgstr "Continue"
 
@@ -775,7 +775,7 @@ msgstr "Recipient email addresses, comma-separated. Empty = %s."
 msgid "Il recesso non è disponibile per il tuo tipo di account."
 msgstr "Withdrawal is not available for your account type."
 
-#: src/Frontend/FlowController.php:731
+#: src/Frontend/FlowController.php:742
 msgid "Il recesso non è disponibile per questo ordine."
 msgstr "Withdrawal is not available for this order."
 
@@ -783,20 +783,52 @@ msgstr "Withdrawal is not available for this order."
 msgid "Ospiti"
 msgstr "Guests"
 
-#: templates/admin/settings.php:66
+#: templates/admin/settings.php:73
 msgid "Disponibilità per ruolo"
 msgstr "Availability by role"
 
-#: templates/admin/settings.php:69
+#: templates/admin/settings.php:76
 msgid "Ruoli senza recesso"
 msgstr "Roles without withdrawal"
 
-#: templates/admin/settings.php:83
+#: templates/admin/settings.php:90
 msgid "Per gli utenti con uno dei ruoli selezionati il recesso è disattivato (es. clienti B2B). Vale per il flusso da account, i link e il flusso guest sugli ordini di quei clienti."
 msgstr "For users with any of the selected roles, withdrawal is disabled (e.g. B2B customers). It applies to the account flow, the links and the guest flow on those customers’ orders."
 
 #. translators: %s: URL to WooCommerce email settings.
-#: templates/admin/settings.php:140
+#: templates/admin/settings.php:147
 #, php-format
 msgid "I testi e i destinatari delle email si gestiscono in <a href=\"%s\">WooCommerce &rarr; Impostazioni &rarr; Email</a>."
 msgstr "Email texts and recipients are managed in <a href=\"%s\">WooCommerce &rarr; Settings &rarr; Emails</a>."
+
+#. translators: %d: number of deleted requests.
+#: src/Admin/AdminPages.php:141
+#, php-format
+msgid "%d richiesta eliminata."
+msgid_plural "%d richieste eliminate."
+msgstr[0] "%d request deleted."
+msgstr[1] "%d requests deleted."
+
+#: src/Admin/AdminPages.php:278
+msgid "Eliminare definitivamente le richieste selezionate? L’operazione non è reversibile."
+msgstr "Permanently delete the selected requests? This action cannot be undone."
+
+#: src/Admin/RequestsListTable.php:92
+msgid "Elimina definitivamente"
+msgstr "Delete permanently"
+
+#: templates/admin/settings.php:65
+msgid "Anti-bot"
+msgstr "Anti-bot"
+
+#: templates/admin/settings.php:67
+msgid "Attiva la protezione honeypot sul modulo di richiesta guest"
+msgstr "Enable honeypot protection on the guest request form"
+
+#: templates/admin/settings.php:68
+msgid "Aggiunge un campo trappola nascosto: i bot che lo compilano vengono scartati senza creare richieste."
+msgstr "Adds a hidden trap field: bots that fill it in are discarded without creating requests."
+
+#: src/Admin/AdminPages.php:294
+msgid "Richieste per pagina"
+msgstr "Requests per page"
