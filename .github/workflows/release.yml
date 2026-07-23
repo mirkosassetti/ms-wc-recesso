@@ -21,7 +21,6 @@ jobs:
         with:
           php-version: '8.1'
           extensions: zip
-          coding_standards: none
           tools: composer
 
       - name: Check tag matches plugin version

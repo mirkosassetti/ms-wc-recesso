@@ -21,7 +21,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coding_standards: none
           tools: composer
 
       - name: Validate composer.json
